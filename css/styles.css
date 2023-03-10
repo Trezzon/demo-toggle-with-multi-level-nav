@@ -40,12 +40,12 @@ h2 {
 }
 
 p {
+    max-width: 70ch;
+    font-size: 18px;
     margin-bottom: 1.5rem;
 }
 
-section {
-    padding: 3.125rem 0;
-}
+
 
 /* **************************************************header**************************************************************** */
 
@@ -71,7 +71,21 @@ header {
 }
 
 header nav {
-    flex-basis: 100%;
+    /* flex-basis: 100%; */
+    /* flex: 1 0 100%; */
+    position: absolute;
+    background-color: var(--navy);
+    top: 88px;
+    left: 0;
+    width: 100vw;
+    padding: 0 1rem;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+.show-nav {
+    max-height: 433px;
 }
 
 ul.menu {
@@ -124,4 +138,106 @@ ul.utility-nav a {
     color: var(--off-white);
     text-decoration: none;
     display: inline-block;
+}
+
+section {
+    padding: 3.125rem 0;
+}
+
+.first-link svg {
+    display: none;
+}
+
+@media screen and (min-width: 700px) {
+    .toggle-btn{
+        display: none;
+    }
+
+    header nav {
+        max-height: 28rem;
+        position: static;
+        width: auto;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        overflow: visible;
+    }
+
+    ul.menu {
+        display: flex;
+        gap: 1.5rem;
+        border: none;
+    }
+
+    ul.menu li {
+        position: relative;
+    }
+
+    ul.submenu {
+        position: absolute;
+        top: 35px;
+        left: 0;
+        background-color: var(--navy);
+        /* background-color: red; */
+        /* z-index: 10; */
+        white-space: nowrap;
+        width: 100%;
+        padding: 0;
+        visibility: hidden;
+        opacity: 0;
+        transition: all 0.5s ease;
+        padding: 1rem;
+        text-align: right;
+    }
+
+    ul.menu li:hover > ul.submenu {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ul.menu li:focus-within > ul,
+    ul.menu li > ul:focus {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    ul.menu,
+    ul.utility-nav {
+        margin: 0;
+    }
+
+    .first-link {
+        display: flex;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+
+    .first-link svg {
+        display: unset;
+        width: 17px;
+        fill: var(--off-white);
+    }
+
+    ul.menu li:hover > .first-link svg{
+        fill: var(--orange);
+    }
+}
+
+@media screen and (min-width: 980px) {
+    .gallery-images {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .gallery-images img {
+        width: 50%;
+    }
+
+    .gallery-images img:last-of-type {
+        position: relative;
+        top: 100px;
+        right: 150px;
+    }
 }
